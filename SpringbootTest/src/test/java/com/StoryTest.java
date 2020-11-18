@@ -10,9 +10,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class StoryTest {
+
     @Autowired
     private StoryService storyService;
 
+    /**
+     * Test 方法，可导入bean运行
+     */
     @Test
     public void test(){
         storyService.storyService();
