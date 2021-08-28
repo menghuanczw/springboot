@@ -2,6 +2,8 @@ package com;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 /**
  * springboot 启动类，加 @SpringBootApplication 注解
@@ -10,8 +12,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  */
 @SpringBootApplication
-public class StartApp {
+public class StartApp extends SpringBootServletInitializer {
     public static void main(String [] args){
         SpringApplication.run(StartApp.class);
+    }
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(StartApp.class);
     }
 }
