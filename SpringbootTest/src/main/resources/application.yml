@@ -1,2 +1,25 @@
 server:
   port: 8888
+spring:
+  mvc:
+    view:
+      prefix: /html/ # html文件夹在 static 目录下
+      suffix: .html
+    static-path-pattern: /**  # 默认 /resources/**，
+  #1.“spring.mvc.static-path-pattern”
+  #spring.mvc.static-path-pattern代表的含义是我们应该以什么样的路径来访问静态资源，只有静态资源满足什么样的匹配条件，Spring Boot才会处理静态资源请求，
+  # 以官方配置为例：spring.mvc.static-path-pattern=/resources/**，这表示只有静态资源的访问路径为/resources/**时，才会处理请求
+  #只有请求地址类似于“http://localhost:8080/resources/jquery.js”时，Spring Boot才会处理此请求，处理方式是将根据模式匹配后的文件名查找本地文件，那么应该在什么地方查找本地文件呢？这就是“spring.resources.static-locations”的作用了。
+#2.“spring.resources.static-locations”
+  #“spring.resources.static-locations”用于告诉Spring Boot应该在何处查找静态资源文件，这是一个列表性的配置，查找文件时会依赖于配置的先后顺序依次进行，默认的官方配置如下：
+  #spring.resources.static-locations=classpath:/static,classpath:/public,classpath:/resources,classpath:/META-INF/resources
+  #继续以上面的请求地址为例，“http://localhost:8080/resources/jquery.js”就会在上述的四个路径中依次查找是否存在“jquery.js”文件，如果找到了，则返回此文件， 否则返回404错误。
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: microcloud
+    password: microcloud
+
+logging:
+  level:
+    root: info

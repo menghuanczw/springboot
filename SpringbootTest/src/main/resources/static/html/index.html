@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+
+           function down(){
+               console.log("download file.");
+               window.location.href="/down";
+           }
+
+           function do123(){
+               var timestamp = new Date().getTime();
+           // 获取XMLHttpRequest
+           var xmlResquest = new XMLHttpRequest();
+           //  发起请求
+           xmlResquest.open("GET", '/down', true);
+           // 设置请求头类型
+           xmlResquest.setRequestHeader("Content-type", "application/json");
+           //  设置请求token
+           // xmlResquest.setRequestHeader(
+
+           // );
+           xmlResquest.responseType = "blob";
+           //  返回
+           xmlResquest.onload = function (oEvent) {
+               let content = xmlResquest.response;
+               // 组装a标签
+               let elink = document.createElement("a");
+               // 设置下载文件名
+               elink.download = timestamp + ".xlsx";
+               elink.style.display = "none";
+               let blob = new Blob([content]);
+               elink.href = URL.createObjectURL(blob);
+               document.body.appendChild(elink);
+               elink.click();
+               document.body.removeChild(elink);
+           };
+           xmlResquest.upload.onprogress = function (e) {
+               if (e.lengthComputable) { //lengthComputable 是 progress 的一个属性，表示资源是否可计算字节流
+                   var pross = (e.loaded / e.total) * 100;
+                   console.log(pross)
+               }
+           }
+           xmlResquest.send();
+           }
+    </script>
+</head>
+<body>
+    <h5>Hello,good luck.</h5>
+    <button type="button" onclick="down()">点击下载</button>
+</body>
+</html>

@@ -50,8 +50,11 @@
             <version>5.2.1.RELEASE</version>
             <scope>compile</scope>
         </dependency>-->
-
-
+        <!--ribbit MQ-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <finalName>fileUpAnDown</finalName>
